@@ -32,6 +32,13 @@ for(let file of filenames){
                 filedata = removeAll(filedata,secondaryArgument);
             }
         }
+
+        if(flag == "-s"){
+            filedata = addSequence(filedata);
+        }
+        if(flag == "-sn"){
+            filedata = addSequenceNEL(filedata);
+        }
     }
     console.log(filedata);
 }
@@ -40,4 +47,22 @@ function removeAll(string, removalData) {
     return string.split(removalData).join("");
 }
 
-// npm run wcat
+function addSequence(string){
+    contentArray = string.split("\r\n")
+    for(let i =0;i<contentArray.length;i++){
+        contentArray[i]= (i+1)+" "+contentArray[i];
+    }
+    return contentArray;
+}
+
+function addSequenceNEL(string){
+    contentArray = string.split("\r\n");
+    let count = 1;
+    for(let i =0;i<contentArray.length;i++){
+        if(contentArray[i]!=""){
+            contentArray[i]= count +" "+contentArray[i];
+            count++;
+        }
+    }
+    return contentArray;
+}
