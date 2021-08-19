@@ -39,6 +39,9 @@ for(let file of filenames){
         if(flag == "-sn"){
             filedata = addSequenceNEL(filedata);
         }
+        if(flag == "-rel"){
+            filedata = removeExtraLine(filedata);
+        }
     }
     console.log(filedata);
 }
@@ -65,4 +68,15 @@ function addSequenceNEL(string){
         }
     }
     return contentArray;
+}
+
+function  removeExtraLine(string){
+    let contentArr = string.split("\r\n");
+    let data = "";
+    for(let line of contentArr){
+        if(line !=""){
+            data+= line+"\r\n";
+        }
+    }
+    return data;
 }
